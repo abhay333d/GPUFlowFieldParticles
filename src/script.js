@@ -146,6 +146,10 @@ gpgpu.particlesVariable.material.uniforms.uBase = new THREE.Uniform(
 );
 gpgpu.particlesVariable.material.uniforms.uFlowFieldInfluence =
   new THREE.Uniform(0.5);
+gpgpu.particlesVariable.material.uniforms.uFlowFieldStrength =
+  new THREE.Uniform(2);
+gpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency =
+  new THREE.Uniform(0.5);
 
 //Init
 gpgpu.comuputation.init();
@@ -158,6 +162,7 @@ gpgpu.debug = new THREE.Mesh(
       .texture,
   })
 );
+gpgpu.debug.visible = false;
 gpgpu.debug.position.x = 3;
 scene.add(gpgpu.debug);
 
@@ -237,6 +242,17 @@ gui
   .min(0)
   .max(1)
   .name("uFlowFieldInfluence");
+gui
+  .add(gpgpu.particlesVariable.material.uniforms.uFlowFieldStrength, "value")
+  .min(0)
+  .max(10)
+  .name("uFlowFieldStrength");
+gui
+  .add(gpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency, "value")
+  .min(0)
+  .max(1)
+  .step(0.001)
+  .name("uFlowFieldFrequency");
 /**
  * Animate
  */
